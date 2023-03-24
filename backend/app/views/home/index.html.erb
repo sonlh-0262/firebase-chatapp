@@ -1,0 +1,24 @@
+<h1>Welcome to home</h1>
+
+<button id="open-chat">Open chat</button>
+
+<iframe src="" id="chat_ifram" name="iframe_a" height="300px" width="100%" title="Iframe Example"></iframe>
+
+<script type="text/javascript">
+
+  $('#open-chat').click(function() {
+    var request = $.ajax({
+      url: "/tokens",
+      method: "POST",
+      dataType: "json"
+    });
+
+    request.done(function( msg ) {
+      $('#chat_ifram').attr('src', "http://localhost:3000/like?token=" + msg.token);
+    });
+
+    request.fail(function( jqXHR, textStatus ) {
+      alert( "Request failed: " + textStatus );
+    });
+  });
+</script>
